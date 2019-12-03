@@ -7,7 +7,7 @@ module.exports = {
     libraryTarget: 'umd',
     filename: 'build.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/public/js/'
+    publicPath: '/Fit/demo/js/'
   },
   module: {
     rules: [
@@ -21,8 +21,8 @@ module.exports = {
   devtool: 'inline-source-map',
   devServer: {
     open: true,
-    openPage: "index.html",
-    contentBase: path.join(__dirname, 'public'),
+    openPage: "demo/index.html",
+    contentBase: path.join(__dirname, '.'),
     watchContentBase: true,
     port: 4567,
   }

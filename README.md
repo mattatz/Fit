@@ -6,7 +6,7 @@ Irregular bin packing library by JavaScript.
 
 ## Demo
 
-[Interactive Demo](https://mattatz.github.io/Fit/public/index.html)
+[Interactive Demo](https://mattatz.github.io/Fit/demo/index.html)
 
 ![demo](https://raw.githubusercontent.com/mattatz/Fit/master/captures/demo.png)  
 No spacing result    
