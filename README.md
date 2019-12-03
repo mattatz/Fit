@@ -9,8 +9,9 @@ Irregular bin packing library by JavaScript.
 [Interactive Demo](https://mattatz.github.io/Fit/public)
 
 ![demo](https://raw.githubusercontent.com/mattatz/Fit/master/captures/demo.png)  
+No spacing result    
 
-![spacing](https://raw.githubusercontent.com/mattatz/Fit/master/captures/spacing.png)
+![spacing](https://raw.githubusercontent.com/mattatz/Fit/master/captures/spacing.png)  
 Enable spacing (= 10) result
 
 ## Usage
