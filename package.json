@@ -1,0 +1,22 @@
+{
+  "name": "fit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server",
+    "build": "webpack"
+  },
+  "author": "Masatatsu Nakamura",
+  "license": "MIT",
+  "dependencies": {
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  },
+  "devDependencies": {
+    "clipper-lib": "^6.4.2",
+    "webpack-dev-server": "^3.9.0",
+    "worker-loader": "^2.0.0"
+  }
+}

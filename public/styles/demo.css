@@ -1,0 +1,128 @@
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+h1 {
+  font-weight: normal;
+  font-size: 50px;
+  padding: 0;
+  margin: 0px 0px 10px 0px;
+}
+
+.header p {
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.header a {
+  font-size: 0.9rem;
+  color: black;
+  text-decoration: none;
+  border-bottom: 1px solid #333;
+}
+
+.header a:hover {
+  border-bottom: 0px;
+}
+
+.header img {
+  height: 1rem;
+  margin-left: 4px;
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+#container {
+  padding: 40px 40px;
+  font-size: 18px;
+}
+
+#indicator {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#indicator .generation {
+  display: inline-block;
+  margin-right: 14px;
+}
+
+#indicator .progress {
+  display: inline-block;
+  height: 24px;
+  width: 500px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+}
+
+#indicator .progress-body {
+  display: block;
+  height: 100%;
+  background-color:aquamarine;
+}
+
+#controller ul {
+  list-style: none;
+}
+
+#controller ul li {
+  padding: 4px 0px;
+  display: flex;
+  align-items: center;
+}
+
+#controller {
+  margin-bottom: 10px;
+}
+
+#controller label {
+  display: inline-block;
+  margin: 0;
+  width: 100px;
+  font-size: 1rem;
+}
+
+#controller input {
+  display: inline-block;
+  width: 100px;
+  font-size: 0.9rem;
+  padding-left: 2px;
+}
+
+#controller button {
+  display: inline-block;
+  width: 200px;
+  height: 30px;
+
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+  outline: none;
+}
+
+#controller button:hover {
+  background-color: #f0f0f0;
+}
+
+#playground {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+#playground svg {
+  box-sizing: border-box;
+  margin-right: 2px;
+  margin-bottom: 2px;
+}
+
+#playground svg.unplaced {
+  margin-top: 10px;
+}
