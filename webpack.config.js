@@ -7,7 +7,7 @@ module.exports = {
     libraryTarget: 'umd',
     filename: 'build.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/js/'
+    publicPath: '/public/js/'
   },
   module: {
     rules: [
