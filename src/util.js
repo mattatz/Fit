@@ -727,8 +727,7 @@ const noFitPolygon = function (A, B, inside = false, edges = false, debug = fals
   let result = []
 
   while (startPoint !== null) {
-    // B.offset.x = startpoint.x, B.offset.y = startpoint.y
-    console.log('while start', startPoint, B.offset.clone())
+    // console.log('while start', startPoint, B.offset.clone())
     B.offset.set(startPoint)
 
     // maintain a list of touching points/edges
@@ -923,9 +922,9 @@ const noFitPolygon = function (A, B, inside = false, edges = false, debug = fals
 }
 
 const minkowskiDifference = function (A, B) {
-
   let Ac = toClipperCoordinates(A.points)
   let Bc = toClipperCoordinates(B.points)
+
   for (let i = 0; i < Bc.length; i++) {
     Bc[i].X *= -1
     Bc[i].Y *= -1
@@ -933,24 +932,21 @@ const minkowskiDifference = function (A, B) {
 
   let solution = ClipperLib.Clipper.MinkowskiSum(Ac, Bc, true)
 
-  let clipperNfp
-  let largestArea = null
+  let minArea = Number.MAX_VALUE
+  let minPolygon = undefined
+
   for (let i = 0, n = solution.length; i < n; i++) {
     let points = toNestCoordinates(solution[i])
     let polygon = new Polygon(points)
-    let sarea = polygon.area()
-
-    // let sarea = GeometryUtil.polygonArea(n)
-    if (largestArea === null || largestArea > sarea) {
-      clipperNfp = polygon 
-      largestArea = sarea
+    let area = polygon.area()
+    if (area < minArea) {
+      minArea = area
+      minPolygon = polygon
     }
   }
 
   const offset = B.points[0]
-  clipperNfp = clipperNfp.translate(offset.x, offset.y)
-
-  return [clipperNfp]
+  return [ minPolygon.translate(offset.x, offset.y) ]
 }
 
 // http://www.angusj.com/delphi/clipper/documentation/Docs/Units/ClipperLib/Classes/ClipperOffset/_Body.htm
