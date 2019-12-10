@@ -38,7 +38,7 @@ export default class Polygon extends Svg {
     return np
   }
 
-  rotate(angle) {
+  rotate(angle = 0) {
     let np = this.clone()
     let sin = Math.sin(angle)
     let cos = Math.cos(angle)

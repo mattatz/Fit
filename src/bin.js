@@ -20,14 +20,14 @@ export default class Bin extends Part {
   static fromJSON(json) {
     let bin = new Bin(json.id, json.width, json.height, json.options)
     bin.offset = new Vector(json.offset.x, json.offset.y)
-    bin.rotation = this.rotation
+    bin.rotation = json.rotation || 0
     return bin
   }
 
   clone() {
     let bin = new Bin(this.id, this.width, this.height, this.options)
-    bin.offset = new Vector(json.offset.x, json.offset.y)
-    bin.rotation = json.rotation
+    bin.offset = new Vector(this.offset.x, this.offset.y)
+    bin.rotation = this.rotation
     return bin
   }
 
