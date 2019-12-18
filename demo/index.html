@@ -44,6 +44,15 @@
       let packer = new Fit.Packer()
       let root = document.getElementById('playground')
 
+      function createDebugRect(id, size = 100, options = {}) {
+        let points = []
+        points.push(new Fit.Vector(0, size))
+        points.push(new Fit.Vector(0, 0))
+        points.push(new Fit.Vector(size, 0))
+        points.push(new Fit.Vector(size, size))
+        return new Fit.Part(id, points, options)
+      }
+
       function createDebugPart(id, vertices = 6, minRadius = 50, maxRadius = 100, dx = 0, dy = 0, options = {}) {
         let points = []
 
@@ -146,6 +155,12 @@
         for (let i = 0; i < 15; i++) {
           parts.push(createDebugPart(parts.length, Math.floor(Math.random() * 4 + 3), 10, 40, 100, 100, { strokeColor: '#0000ff', fill: '#bbccff', strokeWidth: 2 }))
         }
+
+        /*
+        for (let i = 0; i < 3; i++) {
+          parts.push(createDebugRect(parts.length, 100, { strokeColor: '#ff0000', fill: '#ff88aa', strokeWidth: 2 }))
+        }
+        */
 
         let config = { 
           spacing: spacing || 0,  // space between parts

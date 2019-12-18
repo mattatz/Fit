@@ -128,11 +128,11 @@ export default class Packer {
 
     let generations = this.config.generations
     return new Promise((resolve) => {
-      this.stepAsync(null, 0, generations, ga, cache, callbacks).then((dna) => {
+      this.stepAsync(null, 0, generations, ga, cache, callbacks).then((result) => {
         for (let key in cache) {
           delete cache[key]
         }
-        resolve(dna.options.placements)
+        resolve(result.placements)
       })
    })
   }
