@@ -60,8 +60,8 @@
 
         for (let i = 0; i < vertices; i++) {
           let r = (i / vertices) * Math.PI * 2
-          let x = Math.cos(r) * (Math.random() * interval + minRadius) + dx
-          let y = Math.sin(r) * (Math.random() * interval + minRadius) + dy
+          let x = maxRadius + Math.cos(r) * (Math.random() * interval + minRadius) + dx
+          let y = maxRadius + Math.sin(r) * (Math.random() * interval + minRadius) + dy
           points.push(new Fit.Vector(x, y))
         }
 
@@ -76,7 +76,7 @@
         progress.style.width = `${percent}%`
       }
 
-      let visualize = (bins = [], placed = [], placements = [], unplaced = []) => {
+      let visualize = (bins = [], placed = [], placements = [], unplaced = [], source = []) => {
 
         while (root.firstChild) {
           root.firstChild.remove()
@@ -88,16 +88,29 @@
           svg.setAttribute('height', bin.height)
           svg.appendChild(bin.toSVG())
 
+          let empty = true
           placements.forEach(placement => {
             if (placement.bin === bin.id) {
+              empty = false
+
               let part = placed.find(p => placement.part === p.id)
               if(part !== undefined) {
                 svg.appendChild(part.toSVG())
               }
+
+              /*
+              let src = source.find(p => placement.part === p.id)
+              if(src !== undefined) {
+                let plg = src.clone().rotate(placement.rotation).translate(placement.position.x, placement.position.y)
+                svg.appendChild(plg.toSVG())
+              }
+              */
             }
           })
 
-          root.appendChild(svg)
+          if (!empty) {
+            root.appendChild(svg)
+          }
         })
 
         if(unplaced.length > 0) {
@@ -146,7 +159,8 @@
         let height = Number(document.getElementById('height').value)
         let spacing = Number(document.getElementById('spacing').value)
 
-        let bin = new Fit.Bin(-1, width, height, { strokeColor: '#aaa', strokeWidth: 2 })
+        let bin = new Fit.Bin(0, width, height, { strokeColor: '#aaa', strokeWidth: 2 })
+        let bins = [ bin ]
 
         let parts = []
         for (let i = 0; i < 10; i++) {
@@ -155,7 +169,6 @@
         for (let i = 0; i < 15; i++) {
           parts.push(createDebugPart(parts.length, Math.floor(Math.random() * 4 + 3), 10, 40, 100, 100, { strokeColor: '#0000ff', fill: '#bbccff', strokeWidth: 2 }))
         }
-
         /*
         for (let i = 0; i < 3; i++) {
           parts.push(createDebugRect(parts.length, 100, { strokeColor: '#ff0000', fill: '#ff88aa', strokeWidth: 2 }))
@@ -167,25 +180,25 @@
           rotationSteps: 4,       // # of angles for available rotation (ex. 4 means [0, 90, 180, 270] angles from 360 / 4 )
           population: 10,         // # of population in GA
           generations: 10,        // # of generations in GA
-          mutationRate: 0.25      // mutation rate in GA
+          mutationRate: 0.15      // mutation rate in GA
         }
 
-        visualize([], [], [], parts)
+        visualize([], [], [], parts, parts)
 
-        packer.start([bin], parts, config, {
+        packer.start(bins, parts, config, {
           onEvaluation: (e) => {
             indicator(e)
           },
           onPacking: (e) => {
-            visualize(e.bins, e.placed, e.placements, e.unplaced)
+            visualize(e.bins, e.placed, e.placements, e.unplaced, parts)
             if (e.unplaced.length > 0) {
               let last = e.bins[e.bins.length - 1]
-              let newBin = new Fit.Bin(last.id - 1, width, height, { strokeColor: '#aaa', strokeWidth: 2 })
+              let newBin = new Fit.Bin(last.id + 1, width, height, { strokeColor: '#aaa', strokeWidth: 2 })
               packer.addBin(newBin)
             }
           },
           onPackingCompleted: (e) => {
-            visualize(e.bins, e.placed, e.placements, e.unplaced)
+            visualize(e.bins, e.placed, e.placements, e.unplaced, parts)
           }
         })
       }

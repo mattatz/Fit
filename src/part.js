@@ -15,9 +15,9 @@ export default class Part extends Polygon {
   static fromJSON(json) {
     let points = json.points.map(p => Vector.fromJSON(p))
     let part = new Part(json.id, points, json.options)
-    part.offset = new Vector(json.offset.x, json.offset.y)
-    part.transformed = json.transformed
-    part.rotation = json.rotation
+    part.offset = (json.offset !== undefined) ? new Vector(json.offset.x, json.offset.y) : new Vector(0, 0)
+    part.transformed = json.transformed || 0
+    part.rotation = json.rotation || 0
     return part
   }
 

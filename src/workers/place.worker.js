@@ -17,7 +17,6 @@ const place = function (bins, parts, nfpCache) {
   let allPlacements = []
   let cost = 0;
 
-
   for (let idx = 0; idx < bins.length; idx++) {
     let placed = []
     let placements = []
@@ -33,7 +32,7 @@ const place = function (bins, parts, nfpCache) {
 
       // inner NFP
       let key = createUniqueKey(bin, part, false)
-      var binNfp = nfpCache[key];
+      var binNfp = nfpCache[key]
 
       // part unplaceable, skip
       if (!binNfp || binNfp.length <= 0) {

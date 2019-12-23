@@ -19,7 +19,7 @@ export default class Bin extends Part {
 
   static fromJSON(json) {
     let bin = new Bin(json.id, json.width, json.height, json.options)
-    bin.offset = new Vector(json.offset.x, json.offset.y)
+    bin.offset = (json.offset !== undefined) ? new Vector(json.offset.x, json.offset.y) : new Vector(0, 0)
     bin.rotation = json.rotation || 0
     return bin
   }

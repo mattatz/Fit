@@ -61,7 +61,7 @@ packer.start(bins, parts, config, {
   onPacking: (e) => {
     // callback on packing once
     // e.placed     : placed parts
-    // e.placements : transformations of placed ({ bin: id, part: id, position: (x, y), rotation: angle })
+    // e.placements : transformations of placed ({ bin: id, part: id, position: (x, y), rotation: angle }, rotation must be done before translation)
     // e.unplaced   : unplaced parts
 
     // If unplaced parts exist, you can add a new bin in a process
