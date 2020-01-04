@@ -29,7 +29,8 @@ export default class Packer {
     this.running = true
 
     // Sort by area in descending
-    this.bins = bins.map(b => b).sort((b0, b1) => { return (b0.area() > b1.area()) ? 1 : -1 })
+    // this.bins = bins.map(b => b).sort((b0, b1) => { return (b0.area() > b1.area()) ? 1 : -1 })
+    this.bins = bins // Disable sort for bins
     this.source = this.parts = parts.map(p => p).sort((p0, p1) => { return (p0.area() > p1.area()) ? 1 : -1 })
 
     this.config = config || {}
