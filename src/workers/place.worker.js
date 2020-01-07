@@ -209,10 +209,6 @@ const place = function (bins, parts, nfpCache) {
       // allPlacements.push(placements)
       allPlacements = allPlacements.concat(placements)
     }
-    else {
-      break // something went wrong
-    }
-
   }
 
   // there were parts that couldn't be placed

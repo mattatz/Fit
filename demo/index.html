@@ -193,12 +193,13 @@
             visualize(e.bins, e.placed, e.placements, e.unplaced, parts)
             if (e.unplaced.length > 0) {
               let last = e.bins[e.bins.length - 1]
-              let newBin = new Fit.Bin(last.id + 1, width, height, { strokeColor: '#aaa', strokeWidth: 2 })
+              let newBin = new Fit.Bin(last.id + 1, last.width, last.height, { strokeColor: '#aaa', strokeWidth: 2 })
               packer.addBin(newBin)
             }
           },
           onPackingCompleted: (e) => {
             visualize(e.bins, e.placed, e.placements, e.unplaced, parts)
+            console.log(e)
           }
         })
       }
