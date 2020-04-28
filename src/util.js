@@ -956,7 +956,7 @@ const offsetPolygon = function (polygon, offset, miterLimit = 2.5, curveToleranc
   let clipper = new ClipperLib.ClipperOffset(miterLimit, curveTolerance * clipperScale)
 
   let path = toClipperCoordinates(polygon.points)
-  clipper.AddPath(path, ClipperLib.JoinType.jtRound, ClipperLib.EndType.etClosedPolygon)
+  clipper.AddPath(path, ClipperLib.JoinType.jtSquare, ClipperLib.EndType.etClosedPolygon)
 
   let paths = new ClipperLib.Paths()
   clipper.Execute(paths, offset * clipperScale)

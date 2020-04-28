@@ -63,6 +63,20 @@ export default class Polygon extends Svg {
     return 0.5 * area
   }
 
+  toTextSVG() {
+    let g = document.createElementNS('http://www.w3.org/2000/svg', 'g')
+    this.points.forEach((v, i) => {
+      let text = document.createElementNS('http://www.w3.org/2000/svg', 'text')
+      text.setAttributeNS(null, 'x', v.x)
+      text.setAttributeNS(null, 'y', v.y)
+      text.setAttributeNS(null, 'font-size', '16')
+      let textNode = document.createTextNode(i)
+      text.appendChild(textNode)
+      g.appendChild(text)
+    })
+    return g
+  }
+
   toSVG() {
     let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
 

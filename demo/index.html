@@ -30,7 +30,7 @@
           </li>
           <li>
             <label for='spacing'>Spacing:</label>
-            <input id='spacing' type='number' value='0' min='0' max='20' />
+            <input id='spacing' type='number' value='5' min='0' max='20' />
           </li>
           <li>
             <button id='reset-button'>Reset</button>
@@ -96,6 +96,7 @@
               let part = placed.find(p => placement.part === p.id)
               if(part !== undefined) {
                 svg.appendChild(part.toSVG())
+                // svg.appendChild(part.toTextSVG()) // debug vertices
               }
 
               /*
@@ -183,9 +184,12 @@
           mutationRate: 0.15      // mutation rate in GA
         }
 
-        visualize([], [], [], parts, parts)
+        // visualize([], [], [], parts, parts)
 
         packer.start(bins, parts, config, {
+          onStart: (e) => {
+            visualize([], [], [], packer.parts, packer.parts)
+          },
           onEvaluation: (e) => {
             indicator(e)
           },

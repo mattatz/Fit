@@ -10,6 +10,8 @@ let placeWorker = new PlaceWorker()
 let nfpWorker = new NfpWorker()
 
 import { createUniqueKey, offsetPolygon } from './util'
+import Part from './part'
+import Bin from './bin'
 
 export default class Packer {
 
@@ -32,9 +34,11 @@ export default class Packer {
     // this.bins = bins.map(b => b).sort((b0, b1) => { return (b0.area() > b1.area()) ? 1 : -1 })
     this.bins = bins // Disable sort for bins
     this.source = this.parts = parts.map(p => p).sort((p0, p1) => { return (p0.area() > p1.area()) ? 1 : -1 })
-
     this.config = config || {}
     this.rnd = new XorShift(this.config.seed || 0)
+
+    if (callbacks && callbacks.onStart)
+      callbacks.onStart()
 
     if (this.config.spacing > 0) {
       this.parts = this.parts.map(part => {
