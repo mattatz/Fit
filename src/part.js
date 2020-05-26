@@ -18,6 +18,7 @@ export default class Part extends Polygon {
     part.offset = (json.offset !== undefined) ? new Vector(json.offset.x, json.offset.y) : new Vector(0, 0)
     part.transformed = json.transformed || 0
     part.rotation = json.rotation || 0
+    part.groupId = json.groupId
     return part
   }
 
@@ -34,11 +35,13 @@ export default class Part extends Polygon {
     np.offset = this.offset.clone()
     np.transformed = this.transformed
     np.rotation = this.rotation
+    np.groupId = this.groupId
     return np
   }
 
   toString() {
-    return `${this.id}:${this.transformed}`
+    // return `${this.id}:${this.transformed}`
+    return `${this.groupId}:${this.transformed}`
   }
 
 }

@@ -37,6 +37,9 @@ export default class Packer {
     this.config = config || {}
     this.rnd = new XorShift(this.config.seed || 0)
 
+    this.group(this.bins, 'bin')
+    this.group(this.source, 'polygon')
+
     if (callbacks && callbacks.onStart)
       callbacks.onStart()
 
@@ -61,6 +64,35 @@ export default class Packer {
           callbacks.onPackingCompleted(e)
         }
       }
+    })
+  }
+
+  group(polygons, prefix = '') {
+    polygons = polygons.slice()
+
+    let groups = []
+    groups.push([polygons.pop()])
+
+    polygons.forEach((poly) => {
+      let found = false
+      for (let i = 0, n = groups.length; i < n; i++) {
+        let grp = groups[i]
+        let head = grp[0]
+        if(head.approximately(poly)) {
+          grp.push(poly)
+          found = true
+        }
+      }
+
+      if (!found) {
+        groups.push([ poly ])
+      }
+    })
+
+    groups.forEach((grp, idx) => {
+      grp.forEach(poly => {
+        poly.groupId = `${prefix}${idx}`
+      })
     })
   }
 

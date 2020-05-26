@@ -21,6 +21,7 @@ export default class Bin extends Part {
     let bin = new Bin(json.id, json.width, json.height, json.options)
     bin.offset = (json.offset !== undefined) ? new Vector(json.offset.x, json.offset.y) : new Vector(0, 0)
     bin.rotation = json.rotation || 0
+    bin.groupId = json.groupId
     return bin
   }
 
@@ -32,7 +33,8 @@ export default class Bin extends Part {
   }
 
   toString() {
-    return `bin:${this.id}`
+    // return `bin:${this.id}`
+    return `${this.groupId}:${this.transformed}`
   }
 
 }

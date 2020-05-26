@@ -9,11 +9,14 @@ export default class Polygon extends Svg {
 
     this.points = points
     this.options = options
+    this.groupId = ''
   }
 
   static fromJSON(json) {
     let points = json.points.map(p => Vector.fromJSON(p))
-    return new Polygon(points, json.options)
+    let poly = new Polygon(points, json.options)
+    poly.groupId = json.groupId
+    return poly
   }
 
   bounds() {
@@ -51,6 +54,7 @@ export default class Polygon extends Svg {
   clone() {
     let points = this.points.map(p => p.clone())
     let np = new Polygon(points, this.options)
+    np.groupId = this.groupId
     return np
   }
 
@@ -100,6 +104,22 @@ export default class Polygon extends Svg {
     }
 
     return polyline
+  }
+
+  approximately(other) {
+    let n = this.points.length
+    let m = other.points.length
+    if (n !== m) return false
+
+    for (let i = 0; i < n; i++) {
+      let p0 = this.points[i]
+      let p1 = other.points[i]
+      if (!p0.approximately(p1)) {
+        return false
+      }
+    }
+
+    return true
   }
 
 }

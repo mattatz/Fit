@@ -75,7 +75,7 @@ export default class Vector {
   }
 
   approximately(v, tolerance = 1e-9) {
-    return (Math.abs(this.x, v.x) < tolerance) && (Math.abs(this.y, v.y) < tolerance)
+    return (Math.abs(this.x - v.x) < tolerance) && (Math.abs(this.y - v.y) < tolerance)
   }
 
   clone() {
