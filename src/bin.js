@@ -29,6 +29,7 @@ export default class Bin extends Part {
     let bin = new Bin(this.id, this.width, this.height, this.options)
     bin.offset = new Vector(this.offset.x, this.offset.y)
     bin.rotation = this.rotation
+    bin.groupId = this.groupId
     return bin
   }
 
